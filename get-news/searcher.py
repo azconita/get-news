@@ -14,7 +14,7 @@ class RSSSearcher(object):
 
 
     def search(self, word=str):
-        news = self.get_lasts_news(self.journal.rss)
+        news = self.get_latest_news(self.journal.rss)
         news = self.get_news_with_word(word, news)
         news = self.parse_news(news)
         return news
@@ -35,7 +35,7 @@ class RSSSearcher(object):
 
 
     #returns list of elems in xml format
-    def get_lasts_news(self, rss=str):
+    def get_latest_news(self, rss=str):
         response = requests.get(rss)
         xml = fromstring(response.text)
         for ch in xml:
